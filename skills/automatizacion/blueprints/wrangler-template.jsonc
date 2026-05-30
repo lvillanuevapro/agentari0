@@ -1,0 +1,25 @@
+{
+  // Cloudflare Workers configuration
+  // Replace [YOUR-AUTOMATION-NAME] with a short slug (lowercase, hyphens only)
+  "name": "[YOUR-AUTOMATION-NAME]",
+  "main": "src/index.ts",
+  "compatibility_date": "2024-01-01",
+
+  // Scheduled triggers — define when your automation runs automatically
+  // Cron format: minute hour day month weekday
+  // Examples:
+  //   "0 8 * * *"     → every day at 8:00 AM UTC
+  //   "0 13 * * *"    → every day at 8:00 AM Mexico City (UTC-5)
+  //   "0 8 * * 1-5"   → Monday to Friday at 8 AM UTC
+  //   "0 */6 * * *"   → every 6 hours
+  "triggers": {
+    "crons": ["0 13 * * *"]
+  },
+
+  // Environment variable bindings
+  // Actual values are set via `npx wrangler secret put KEY_NAME`
+  // Never put real values here — this file can be shared publicly
+  "vars": {
+    "ENVIRONMENT": "production"
+  }
+}

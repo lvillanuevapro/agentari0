@@ -1,0 +1,36 @@
+{
+  // Cloudflare Workers + Agents SDK configuration
+  // Replace [YOUR-AGENT-NAME] with a short slug (lowercase, hyphens only)
+  "name": "[YOUR-AGENT-NAME]",
+  "main": "src/index.ts",
+  "compatibility_date": "2024-01-01",
+  "compatibility_flags": ["nodejs_compat"],
+
+  // Scheduled triggers
+  "triggers": {
+    "crons": ["0 13 * * *"]
+  },
+
+  // Durable Objects — this is what gives the agent persistent memory between runs
+  // The class_name must match the class exported in your index.ts
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "MY_AGENT",
+        "class_name": "MyAgent"
+      }
+    ]
+  },
+
+  // Required for Durable Objects
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_classes": ["MyAgent"]
+    }
+  ],
+
+  "vars": {
+    "ENVIRONMENT": "production"
+  }
+}
